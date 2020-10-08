@@ -25,15 +25,14 @@ public class ReadFile {
         while (scan.hasNext()) l.add(scan.nextLine());
         return l;
     }
-    public String getOnePersonFromTheList(String input){
+    public String getMatchesFromTheList(String input){
         String output ="";
         String temp;
         int counter = 0;
         for (int i = 0; i < personList.size(); i++) {
             temp = (String )personList.get(i);
             if (temp.contains(input)){
-                output += temp;
-                System.out.println(output);
+                output += temp+"\n";
             }
         }
         return output;
