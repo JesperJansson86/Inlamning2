@@ -5,10 +5,21 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReadFile {
-    String path = "customers.txt";
+    private String path = "customers.txt";
+    String stringFromFile;
     List personList = new LinkedList();
+    public String getPath() {
+        return path;
+    }
 
-    public String readFileReturnString(String path) throws FileNotFoundException {
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+
+
+
+    public void readFileReturnString() throws FileNotFoundException {
         StringBuilder output = new StringBuilder();
         Scanner scan = new Scanner(new File(path));
         scan.useDelimiter("\n");
@@ -16,14 +27,14 @@ public class ReadFile {
             output.append(scan.nextLine() + ", ");
             output.append(scan.nextLine() + "\n");
         }
-        return output.toString();
+        stringFromFile=output.toString();
     }
 
-    public List makeListOutOfString(String input) {
+    public void makeListOutOfString() {
         List<String> l = new LinkedList();
-        Scanner scan = new Scanner(input);
+        Scanner scan = new Scanner(stringFromFile);
         while (scan.hasNext()) l.add(scan.nextLine());
-        return l;
+        personList=l;
     }
     public String getMatchesFromTheList(String input){
         String output ="";

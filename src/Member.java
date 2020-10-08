@@ -4,7 +4,7 @@ import java.time.temporal.ChronoUnit;
 
 public class Member {
     ReadFile rf1 = new ReadFile();
-
+    boolean member =false;
 boolean test = false;
 
     public Member() throws FileNotFoundException {
@@ -18,6 +18,7 @@ boolean test = false;
 
     }
     public boolean isMember(String input){
+        member = dateDiff(input) < 365;
         return dateDiff(input) < 365;
     }
 }

@@ -5,22 +5,29 @@ import java.io.FileNotFoundException;
 public class ReadFileTest {
     ReadFile test = new ReadFile();
 
+
     @Test
     public void readFileReturnStringTest() throws FileNotFoundException {
-        Assert.assertEquals(test.readFileReturnString("Testcustomers.txt"),
-                "7603021234, Alhambra Aromes, 2019-07-01\n" +
-                        "8104021234, Bear Belle, 2018-12-02\n");
+        test.setPath("Testcustomers.txt");
+        test.readFileReturnString();
+        Assert.assertEquals(test.stringFromFile,
+                "7603021234, Alhambra Aromes, 2019-07-01\n8104021234, Bear Belle, 2018-12-02\n");
     }
 
     @Test
     public void makeListOutOfStringTest() throws FileNotFoundException {
-        Assert.assertTrue(test.makeListOutOfString(test.readFileReturnString("customers.txt")).size() == 14);
-        Assert.assertFalse(test.makeListOutOfString(test.readFileReturnString("customers.txt")).size() == 0);
+        test.setPath("customers.txt");
+        test.readFileReturnString();
+        test.makeListOutOfString();
+        Assert.assertTrue(test.personList.size() == 14);
+        Assert.assertFalse(test.personList.size() == 0);
     }
 
     @Test
     public void getMatchesFromTheListTest() throws FileNotFoundException {
-        test.personList = test.makeListOutOfString(test.readFileReturnString("customers.txt"));
+        test.setPath("customers.txt");
+        test.readFileReturnString();
+        test.makeListOutOfString();
         Assert.assertEquals(test.getMatchesFromTheList("8512021234"), "8512021234, Chamade Coriola, 2017-03-12\n");
         Assert.assertEquals(test.getMatchesFromTheList("Greger"), "7512166544, Greger Ganache, 2020-03-23\n");
         Assert.assertEquals(test.getMatchesFromTheList("212"), "7603021234, Alhambra Aromes, 2019-07-01\n" +
