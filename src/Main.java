@@ -7,7 +7,7 @@ public class Main {
         BestGymEverAttendance.attendance();
 
 
-
+System.exit(0);
     }
 
 }
