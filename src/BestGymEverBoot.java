@@ -1,19 +1,19 @@
 import javax.swing.*;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-
-
 public class BestGymEverBoot {
-    public static void attendance() throws IOException {
+    public boolean test;
+    public String input;
+
+    public void attendance() throws IOException {
 
         while (true) {
-            String input = JOptionPane.showInputDialog(null, "Namn eller personnummer?");
+            if (!test) {
+                input = JOptionPane.showInputDialog(null, "Namn eller personnummer?");
+            }
             if (input == null) break;
             ReadFile rf1 = new ReadFile(input);
-
-//            try {
             if (rf1.Match) JOptionPane.showMessageDialog(null, "Person finns ej i registret");
-            else if (rf1.morethanOneMatch) JOptionPane.showMessageDialog(null, "Fler än en person hittad:\n"
+            else if (rf1.moreThanOneMatch) JOptionPane.showMessageDialog(null, "Fler än en person hittad:\n"
                     + rf1.matches + "Var god gör en nogrannare sökning");
             else {
                 Member m1 = new Member(rf1.matches);
@@ -25,8 +25,8 @@ public class BestGymEverBoot {
                     }
                 } else
                     JOptionPane.showMessageDialog(null, "Medlemskap har gått ut! Det gick ut för " + (m1.dateDiff(m1.date) - 365) + " dagar sedan.");
-//            }catch (IndexOutOfBoundsException e){JOptionPane.showMessageDialog(null,"Person finns ej i registret");}
             }
         }
     }
+
 }

@@ -1,20 +1,18 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-
 
 public class MemberTest {
     Member test = new Member();
 
-    public MemberTest() throws FileNotFoundException {
+    public MemberTest() {
     }
 
     @Test
     public void dateDiffTest(){
         test.test=true;
-        Assert.assertTrue(test.dateDiff("2020-01-05")==277);
-        Assert.assertFalse(test.dateDiff("2020-01-05")==0);
+        Assert.assertEquals(test.dateDiff("2020-01-05"),277);
+        Assert.assertNotEquals(test.dateDiff("2020-01-05"),0);
 
     }
     @Test

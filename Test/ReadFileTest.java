@@ -3,25 +3,25 @@ import org.junit.*;
 import java.io.FileNotFoundException;
 
 public class ReadFileTest {
-    ReadFile test = new ReadFile("customers.txt");
+    ReadFile test = new ReadFile("Spelar ej roll");
 
 
     @Test
     public void readFileReturnStringTest() throws FileNotFoundException {
-        test.setPath("Testcustomers.txt");
+        test.setPath("Testcustomersshort.txt");
         test.readFileReturnString();
         Assert.assertEquals(test.stringFromFile,
                 "7603021234, Alhambra Aromes, 2019-07-01\n8104021234, Bear Belle, 2018-12-02\n");
     }
 
     @Test
-    public void makeListOutOfStringTest() throws FileNotFoundException {
+    public void makeListOutOfStringTest()  {
         Assert.assertTrue(test.personList.size() == 14);
         Assert.assertFalse(test.personList.size() == 0);
     }
 
     @Test
-    public void getMatchesFromTheListTest() throws FileNotFoundException {
+    public void getMatchesFromTheListTest()  {
         Assert.assertEquals(test.getMatchesFromTheList("sdfsdfdsf"), "");
         Assert.assertEquals(test.getMatchesFromTheList("8512021234"), "8512021234, Chamade Coriola, 2017-03-12\n");
         Assert.assertEquals(test.getMatchesFromTheList("Greger"), "7512166544, Greger Ganache, 2020-03-23\n");

@@ -14,8 +14,8 @@ public class WriteFileTest {
         BasicFileAttributes beforeFileAtt = Files.readAttributes(file, BasicFileAttributes.class);
         WriteFile.writeToFileWhenMemberTrained("Test");
         BasicFileAttributes afterFileAtt = Files.readAttributes(file, BasicFileAttributes.class);
-        Assert.assertTrue(beforeFileAtt!=afterFileAtt);
-        Assert.assertFalse(beforeFileAtt==afterFileAtt);
+        Assert.assertTrue(beforeFileAtt.lastModifiedTime()!=afterFileAtt.lastModifiedTime());
+        Assert.assertFalse(beforeFileAtt.lastModifiedTime()==afterFileAtt.lastModifiedTime());
 
 
     }
