@@ -4,7 +4,7 @@ public class Main {
 
 
     public static void main(String[] args) throws IOException {
-        BestGymEverAttendance.attendance();
+        BestGymEverBoot.attendance();
 
 
 System.exit(0);

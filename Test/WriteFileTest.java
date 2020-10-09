@@ -12,8 +12,7 @@ public class WriteFileTest {
     public void writeToFileWhenMemberTrainedTest() throws IOException {
         Path file = Paths.get("MembersTrained.txt");
         BasicFileAttributes beforeFileAtt = Files.readAttributes(file, BasicFileAttributes.class);
-        WriteFile wr1 = new WriteFile();
-        wr1.writeToFileWhenMemberTrained("Test");
+        WriteFile.writeToFileWhenMemberTrained("Test");
         BasicFileAttributes afterFileAtt = Files.readAttributes(file, BasicFileAttributes.class);
         Assert.assertTrue(beforeFileAtt!=afterFileAtt);
         Assert.assertFalse(beforeFileAtt==afterFileAtt);
