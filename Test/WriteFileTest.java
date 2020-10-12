@@ -17,6 +17,5 @@ public class WriteFileTest {
         Assert.assertTrue(beforeFileAtt.lastModifiedTime()!=afterFileAtt.lastModifiedTime());
         Assert.assertFalse(beforeFileAtt.lastModifiedTime()==afterFileAtt.lastModifiedTime());
 
-
     }
 }

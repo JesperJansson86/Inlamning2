@@ -13,13 +13,7 @@ public class ReadFile {
     Boolean moreThanOneMatch;
     List<String> personList = new LinkedList<>();
 
-//    public ReadFile() throws FileNotFoundException {
-//        readFileReturnString();
-//        makeListOutOfString();
-//
-//    }
-
-    public ReadFile(String input) throws FileNotFoundException {
+    public ReadFile(String input) {
         readFileReturnString();
         makeListOutOfString();
         matches = getMatchesFromTheList(input);
@@ -27,9 +21,6 @@ public class ReadFile {
         Match = isThereAMatch();
     }
 
-//    public String getPath() {
-//        return path;
-//    }
 
     public void setPath(String path) {
         this.path = path;
@@ -38,20 +29,20 @@ public class ReadFile {
 
     public void readFileReturnString() {
         StringBuilder output = new StringBuilder();
-       try{
-        Scanner scan = new Scanner(new File(path));
-        scan.useDelimiter("\n");
-        while (scan.hasNext()) {
-            output.append(scan.nextLine());
-            output.append(", ");
-            output.append(scan.nextLine());
-            output.append("\n");
+        try (Scanner scan = new Scanner(new File(path))) {
+            scan.useDelimiter("\n");
+            while (scan.hasNext()) {
+                output.append(scan.nextLine());
+                output.append(", ");
+                output.append(scan.nextLine());
+                output.append("\n");
+            }
+            stringFromFile = output.toString();
+        } catch (FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "Det går ej att hitta filen med personer: " + path);
+            e.printStackTrace();
+            System.exit(-1);
         }
-        stringFromFile = output.toString();
-    }catch (FileNotFoundException e){
-           JOptionPane.showMessageDialog(null,"Det går ej att hitta filen med personer: " +path);
-           System.exit(-1);
-       }
     }
 
     public void makeListOutOfString() {

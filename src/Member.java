@@ -9,6 +9,7 @@ public class Member {
     public Member() {
 
     }
+
     public Member(String input) {
         date = getMemberDate(input);
         isMembershipValid(date);
@@ -28,7 +29,9 @@ public class Member {
         member = dateDiff(input) < 365;
         return dateDiff(input) < 365;
     }
-    public String getMemberDate(String input){
+
+    public String getMemberDate(String input) {
+
         return input.substring(input.length() - 11, input.length() - 1);
     }
 }

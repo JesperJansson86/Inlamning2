@@ -3,11 +3,12 @@ import org.junit.*;
 import java.io.FileNotFoundException;
 
 public class ReadFileTest {
-    ReadFile test = new ReadFile("Spelar ej roll");
+    ReadFile test = new ReadFile("Spelar ej roll vid testning");
+
 
 
     @Test
-    public void readFileReturnStringTest() throws FileNotFoundException {
+    public void readFileReturnStringTest() {
         test.setPath("Testcustomersshort.txt");
         test.readFileReturnString();
         Assert.assertEquals(test.stringFromFile,
@@ -53,7 +54,6 @@ public class ReadFileTest {
 
     }
 
-    public ReadFileTest() throws FileNotFoundException {
-    }
+
 }
 
