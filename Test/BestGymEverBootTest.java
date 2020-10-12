@@ -1,19 +1,11 @@
 import org.junit.Assert;
 import org.junit.Test;
 
-import javax.swing.*;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-
 public class BestGymEverBootTest {
     BestGymEverBoot boot = new BestGymEverBoot();
-    ReadFile rf = new ReadFile("hej");
+    ReadFile rf = new ReadFile("customersTest.txt", "Input ändras för varje eget test.");
     Member m1 = new Member();
 
-
-    public BestGymEverBootTest() {
-
-    }
 
     @Test
     public void thereIsNoSuchPersonTest() {
@@ -24,7 +16,7 @@ public class BestGymEverBootTest {
     }
 
     @Test
-    public void thereIsMoreThanOnePersonTest()  {
+    public void thereIsMoreThanOnePersonTest() {
         boot.test = true;
         boot.input = "123";
         Assert.assertEquals(boot.thereIsMoreThanOnePerson(rf), "Fler än en person hittad");
@@ -32,17 +24,20 @@ public class BestGymEverBootTest {
     }
 
     @Test
-    public void thisPersonIsAMemberTest()  {
+    public void thisPersonIsAMemberTest() {
         boot.test = true;
         boot.input = "Greger";
+        m1.test = true;
         Assert.assertEquals(boot.thisPersonIsAMember(rf, m1), "Är en medlem.");
         Assert.assertNotEquals(boot.thisPersonIsAMember(rf, m1), "");
     }
+
     @Test
-    public void thisPersonsMembershipHasExpiredTest(){
+    public void thisPersonsMembershipHasExpiredTest() {
         boot.test = true;
+        m1.test = true;
         boot.input = "Bear";
-        Assert.assertEquals(boot.thisPersonsMembershipHasExpired(m1), "Medlemskap har gått ut!");
-        Assert.assertNotEquals(boot.thisPersonsMembershipHasExpired(m1), "");
+        Assert.assertEquals(boot.thisPersonsMembershipHasExpired(rf, m1), "Medlemskap har gått ut!");
+        Assert.assertNotEquals(boot.thisPersonsMembershipHasExpired(rf, m1), "");
     }
 }

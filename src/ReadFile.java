@@ -6,19 +6,20 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ReadFile {
-    private String path = "customers.txt";
+    private String path;
     String stringFromFile;
     String matches;
-    Boolean Match;
+    Boolean noMatch;
     Boolean moreThanOneMatch;
     List<String> personList = new LinkedList<>();
 
-    public ReadFile(String input) {
+    public ReadFile(String path, String input) {
+        this.path=path;
         readFileReturnString();
         makeListOutOfString();
-        matches = getMatchesFromTheList(input);
-        moreThanOneMatch = isThereMoreThanOneMatch(matches);
-        Match = isThereAMatch();
+        getMatchesFromTheList(input);
+        isThereMoreThanOneMatch();
+        isThereAMatch();
     }
 
 
@@ -38,6 +39,7 @@ public class ReadFile {
                 output.append("\n");
             }
             stringFromFile = output.toString();
+
         } catch (FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "Det går ej att hitta filen med personer: " + path);
             e.printStackTrace();
@@ -52,7 +54,7 @@ public class ReadFile {
         personList = l;
     }
 
-    public String getMatchesFromTheList(String input) {
+    public void getMatchesFromTheList(String input) {
         StringBuilder output = new StringBuilder();
         String temp;
         for (String s : personList) {
@@ -62,15 +64,15 @@ public class ReadFile {
                 output.append("\n");
             }
         }
-        return output.toString();
+        matches= output.toString();
     }
 
-    public boolean isThereAMatch() {
-        return matches.equals("");
+    public void isThereAMatch() {
+        noMatch = matches.equals("");
     }
 
-    public boolean isThereMoreThanOneMatch(String input) {
+    public void isThereMoreThanOneMatch() {
 
-        return (input.lastIndexOf("\n")) != (input.indexOf("\n"));
+        moreThanOneMatch= (matches.lastIndexOf("\n")) != (matches.indexOf("\n"));
     }
 }

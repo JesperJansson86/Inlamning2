@@ -1,10 +1,7 @@
 import org.junit.*;
 
-import java.io.FileNotFoundException;
-
 public class ReadFileTest {
-    ReadFile test = new ReadFile("Spelar ej roll vid testning");
-
+    ReadFile test = new ReadFile("customersTest.txt","Spelar ej roll vid testning");
 
 
     @Test
@@ -23,10 +20,14 @@ public class ReadFileTest {
 
     @Test
     public void getMatchesFromTheListTest()  {
-        Assert.assertEquals(test.getMatchesFromTheList("sdfsdfdsf"), "");
-        Assert.assertEquals(test.getMatchesFromTheList("8512021234"), "8512021234, Chamade Coriola, 2017-03-12\n");
-        Assert.assertEquals(test.getMatchesFromTheList("Greger"), "7512166544, Greger Ganache, 2020-03-23\n");
-        Assert.assertEquals(test.getMatchesFromTheList("212"),
+        test.getMatchesFromTheList("asdasd123123asd");
+        Assert.assertEquals(test.matches, "");
+        test.getMatchesFromTheList("8512021234");
+        Assert.assertEquals(test.matches, "8512021234, Chamade Coriola, 2017-03-12\n");
+        test.getMatchesFromTheList("Greger");
+        Assert.assertEquals(test.matches, "7512166544, Greger Ganache, 2020-03-23\n");
+        test.getMatchesFromTheList("212");
+        Assert.assertEquals(test.matches,
                 "7603021234, Alhambra Aromes, 2019-07-01\n" +
                         "8104021234, Bear Belle, 2018-12-02\n" +
                         "8512021234, Chamade Coriola, 2017-03-12\n" +
@@ -39,18 +40,25 @@ public class ReadFileTest {
     @Test
     public void isThereAMatchTest() {
         test.matches = "";
-        Assert.assertTrue(test.isThereAMatch());
+        test.isThereAMatch();
+        Assert.assertTrue(test.noMatch);
         test.matches = "8512021234, Chamade Coriola, 2017-03-12\n";
-        Assert.assertFalse(test.isThereAMatch());
+        test.isThereAMatch();
+        Assert.assertFalse(test.noMatch);
 
     }
 
     @Test
     public void isThereMoreThanOneMatchTest() {
-        Assert.assertFalse(test.isThereMoreThanOneMatch("8512021234, Chamade Coriola, 2017-03-12\n"));
-        Assert.assertFalse(test.isThereMoreThanOneMatch(""));
-        Assert.assertTrue(test.isThereMoreThanOneMatch(
-                "8512021234, Chamade Coriola, 2017-03-12\n8104021234, Bear Belle, 2018-12-02\n"));
+        test.matches="8512021234, Chamade Coriola, 2017-03-12\n";
+        test.isThereMoreThanOneMatch();
+        Assert.assertFalse(test.moreThanOneMatch);
+        test.matches="";
+        test.isThereMoreThanOneMatch();
+        Assert.assertFalse(test.moreThanOneMatch);
+        test.matches="8512021234, Chamade Coriola, 2017-03-12\n8104021234, Bear Belle, 2018-12-02\n";
+        test.isThereMoreThanOneMatch();
+        Assert.assertTrue(test.moreThanOneMatch);
 
     }
 

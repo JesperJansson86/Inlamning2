@@ -6,24 +6,24 @@ public class BestGymEverBoot {
     public String output;
     public boolean loop = true;
 
-    public void attendance()  {
+    public void attendance() {
 
         while (loop) {
             if (!test) {
                 input = JOptionPane.showInputDialog(null, "Namn eller personnummer?");
             }
             if (input == null) break;
-            ReadFile rf1 = new ReadFile(input);
-            if (rf1.Match)
+            ReadFile rf1 = new ReadFile("customers.txt", input);
+            if (rf1.noMatch)
                 output = thereIsNoSuchPerson();
             else if (rf1.moreThanOneMatch) {
                 thereIsMoreThanOnePerson(rf1);
             } else {
                 Member m1 = new Member(rf1.matches);
-                if (m1.member) {
+                if (m1.isMember) {
                     thisPersonIsAMember(rf1, m1);
                 } else {
-                    thisPersonsMembershipHasExpired(m1);
+                    thisPersonsMembershipHasExpired(rf1, m1);
 
                 }
             }
@@ -56,9 +56,9 @@ public class BestGymEverBoot {
         return "Är en medlem.";
     }
 
-    public String thisPersonsMembershipHasExpired(Member m1) {
+    public String thisPersonsMembershipHasExpired(ReadFile rf1, Member m1) {
         if (!test)
-            JOptionPane.showMessageDialog(null, "Medlemskap har gått ut! Det gick ut för " + (m1.dateDiff(m1.date) - 365) + " dagar sedan.");
+            JOptionPane.showMessageDialog(null, rf1.matches + "\nMedlemskap har gått ut! Det gick ut för " + (m1.dateDiff(m1.date) - 365) + " dagar sedan.");
         return "Medlemskap har gått ut!";
 
     }
